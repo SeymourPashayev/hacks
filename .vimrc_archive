@@ -2,15 +2,14 @@
 " Signature
 :iabbrev ssig -- <cr>Seymour Pashayev<cr>gitHub:@SeymourPashayev
 
-" shows line number
+" -- Basic Setup --
+" shows line number and sets number-row width
 :set number
 :set numberwidth=2
+:set nocompatible
 
 " Sets the leader
 :let mapleader="-"
-
-" test leader; sets leader+d to dd
-" :nnoremap <leader>d dd
 
 " (Make it easy (Make it easy (Edit Text)))
 " ed stands for EDit .vimrc
@@ -20,6 +19,24 @@
 " u stands for Update source .vimrc file
 :nnoremap <leader>u :source $MYVIMRC<cr>
 
+" -- Navigation -- 
+" Sets esc to no-operation so you are forced to use your own mapping
+:inoremap <esc> <nop>
+
+" Sets ht to esc 
+:inoremap ht <esc>
+
+" Remove Arrow-Key mapping from normal mode
+:nnoremap <Up> <nop>
+:nnoremap <Down> <nop>
+:nnoremap <Left> <nop>
+:nnoremap <Right> <nop>
+
+" Set H and L to repeat the behaviour of h and l but on cocaine
+:nnoremap H 0
+:nnoremap L $
+ 
+" -- Working With Text --
 " Wrap the selected word into " and '
 :nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 :nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
@@ -28,13 +45,11 @@
 :nnoremap <leader>rc :echo system('grep -v ', getreg('"', 1, 1))
 "FIXME: Find a way to pass selected text into :commands
 
+" -- Text Lookup --
 " Create a new tab and look for selected text
 " FIXME: Does Not work the intended way, but :TABNEW | Read !grep -Hnr 'self'
 
-" Make it easy to quit apps
-" :nnoremap <leader>q :qall!<cr>
-" !REDACTED: could lead to catastrophies! Use with caution
-
+" -----------------------------------
 " Code under that line is not written by @SeymourPashayev, solely maintained
 " -----------------------------------
 
