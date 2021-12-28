@@ -8,6 +8,14 @@
 :set numberwidth=2
 :set nocompatible
 
+" Adds back arrows in insert mode
+:set t_ku=OA 
+:set t_kd=OB
+:set t_kr=OC
+:set t_kl=OD
+
+:set mouse=a
+
 " Sets the leader
 :let mapleader="-"
 
@@ -35,7 +43,16 @@
 " Set H and L to repeat the behaviour of h and l but on cocaine
 :nnoremap H 0
 :nnoremap L $
- 
+
+" Superuser setup for LL: does what L does but with a <CR>
+:nnoremap LL $o
+
+" Set t, (<) and t. (>) to move around tabs quickly
+:nnoremap <leader>t, :tabprevious<CR>
+:nnoremap <leader>t. :tabnext<CR>
+
+
+
 " -- Working With Text --
 " Wrap the selected word into " and '
 :nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
@@ -70,4 +87,3 @@ Plug 'junegunn/vim-easy-align'
 
 " Initialize plugin system
 call plug#end()
-
