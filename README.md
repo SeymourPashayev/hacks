@@ -1,3 +1,6 @@
 # Workflow Hacks
 
-*vimrc_archive - latest working vimrc in use
+*.vimrc - latest working vimrc in use
+*.bash_profile - latest working bash_profile in use
+
+### Files are in early development stages, a lot of functionality is not organized within the file
