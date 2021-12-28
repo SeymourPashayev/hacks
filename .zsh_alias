@@ -1,8 +1,8 @@
 #########################################
-# .zsh_alias file			                  #
-# -- 					                          #
-# Seymour Pashayev			                #
-# gitHub:@SeymourPashayev 		          #
+# .zsh_alias file			#
+# -- 					#
+# Seymour Pashayev			#
+# gitHub:@SeymourPashayev 		#
 #########################################
 
 # Contents:
@@ -34,7 +34,7 @@ alias wordlist='cd /usr/share/wordlists'	 # wordlist:	 Wordlists' Location
 
 
 # ---- MacOS ----
-# alias f='open -a Finder ./'              	 # f:            Opens current directory in Finder
+# alias f='open -a Finder ./'              	 # f:            Opens current directory in MacOS Finder
 
 #---- Unexplored
 alias which='type -all'                    	 # which:        Find executables
@@ -51,9 +51,9 @@ ql () { qlmanage -p "$*" >& /dev/null; }   	 # ql:           Opens any file in M
 # 2. WORKFLOW IMPROVEMENTS
 # --------------------------------------
 
-alias shhh='vim ~/.zsh_alias'			           # shhh:	        Open .zsh_alias file to edit
-alias c='clear'                            	 # c:             Clear terminal display
-alias stdd='tee ~/Desktop/terminalOut.txt'   # stdd:          Pipe content to file on Desktop
+alias shhh='vim ~/.zsh_alias'			 # shhh:	 Open .zsh_alias file to edit
+alias c='clear'                            	 # c:            Clear terminal display
+alias stdd='tee ~/Desktop/terminalOut.txt'   	 # stdd:           Pipe content to file on Desktop
 
 # lr: Full Recursive Directory Listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
