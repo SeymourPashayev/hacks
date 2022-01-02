@@ -22,7 +22,8 @@ alias mkdir='mkdir -pv'                    	 # Preferred 'mkdir' implementation
 alias ll='ls -lG'		           	 # Preferred 'ls' implementation
 alias la='ls -FGlAhp'                      	 # Preferred 'ls' implementation
 alias less='less -FSRXc'                   	 # Preferred 'less' implementation
-cd() { builtin cd "$@"; ll; }              	 # Always list directory contents upon 'cd'
+cd() { builtin cd "$@"; ll; }		         # Always list directory contents upon 'cd' & save last location to prevLoc
+prev() {cd "$OLDPWD"}				 # prev:	 Navigate to the previous Dir
 mcd () { mkdir -p "$1" && cd "$1"; }      	 # mcd:          Makes new Dir and jumps inside
 
 # ---- Movement Shortcuts ----
@@ -32,7 +33,7 @@ alias ...='cd ../../'                      	 # Go back 2 directory levels
 
 alias ~='cd ~'                             	 # ~:            Go Home
 alias wordlist='cd /usr/share/wordlists'	 # wordlist:	 Wordlists' Location
-
+alias scripts='cd ~/scripts'
 
 # ---- MacOS ----
 alias f='open -a Finder ./'              	 # f:            Opens current directory in MacOS Finder
@@ -40,7 +41,6 @@ trash () { command mv "$@" ~/.Trash ; }    	 # trash:        Moves a file to the
 ql () { qlmanage -p "$*" >& /dev/null; }   	 # ql:           Opens any file in MacOS Quicklook Preview
 
 #---- Unexplored
-alias which='type -all'                    	 # which:        Find executables
 alias path='echo -e ${PATH//:/\\n}'        	 # path:         Echo all executable Paths
 alias show_options='shopt'                	 # Show_options: display bash options settings
 alias fix_stty='stty sane'                	 # fix_stty:     Restore terminal settings when screwed up
@@ -52,6 +52,7 @@ alias cic='set completion-ignore-case On' 	 # cic:          Make tab-completion 
 # --------------------------------------
 
 alias shhh='vim ~/.zsh_alias'			 # shhh:	 Open .zsh_alias file to edit
+alias src='source ~/.zshrc'
 alias vimrc='vim ~/.vimrc'			 # 		 Open .vimrc file to edit
 alias c='clear'                            	 # c:            Clear terminal display
 alias stdd='tee ~/Desktop/terminalOut.txt'   	 # stdd:         Pipe content to file on Desktop
