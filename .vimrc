@@ -22,6 +22,23 @@ if $VIMENV == 'prev'
 	:set noswapfile
 endif
 
+" vim-airline theme
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='powerlineish'
+" FIXME: airline_theme does not work properly
+
+" Colorscheme
+if &t_Co ==256
+	try
+		color xoria256
+	catch /^Vim\%((\a\+)\)\=:E185/
+	endtry
+endif
+
+
+" Highlighting
+syntax on
+
 " ---- Basics Setup ----
 " shows line number and sets number-row width
 :set number
@@ -72,7 +89,8 @@ endif
 :nnoremap <leader>t, :tabprevious<CR>
 :nnoremap <leader>t. :tabnext<CR>
 
-
+" Open file under cursor in new tab @tomnomnom
+map <F9> <Esc><C-W>gF<CR>:tabm<CR>
 
 " ---- Working With Text ----
 " Wrap the selected word into " and '
@@ -86,7 +104,14 @@ endif
 " Text Lookup
 " Create a new tab and look for selected text
 " FIXME: Does Not work the intended way, but :TABNEW | Read !grep -Hnr 'self'
+" grep recursively for word under cursor
+nmap <leader>i :tabnew\|read !grep -Hnr '<C-R><C-W>'<CR>
 
+" sort the buffer removing duplicates
+nmap <leader>o :%!sort -u --version-sort<CR>
+
+" Visual prompt for command completion
+set wildmenu
 " -----------------------------------
 " Code under that line is not written by @SeymourPashayev, solely maintained
 " -----------------------------------
@@ -103,9 +128,10 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+" Plugin Setup
 Plug 'junegunn/vim-easy-align'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Initialize plugin system
 call plug#end()
