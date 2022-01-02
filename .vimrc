@@ -2,14 +2,35 @@
 " Signature
 :iabbrev ssig -- <cr>Seymour Pashayev<cr>gitHub:@SeymourPashayev
 
-" -- Basic Setup --
+" ===========================
+" =	File Contents	    =
+" ===========================
+"
+" 1. Environment Setup
+" 2. Basics Setup
+" 3. Navigation
+" 4. Working With Text
+"
+" ===========================
+
+
+" ---- Environment Setup ----
+" Environment prev for large file preview through buffers
+if $VIMENV == 'prev'
+	:noremap <Space> :n<CR>
+	:noremap <Backspace> :N<CR>
+	:set noswapfile
+endif
+
+" ---- Basics Setup ----
 " shows line number and sets number-row width
 :set number
 :set numberwidth=2
 :set nocompatible
+:set noesckeys
 
 " Adds back arrows in insert mode
-:set t_ku=OA 
+:set t_ku=OA
 :set t_kd=OB
 :set t_kr=OC
 :set t_kl=OD
@@ -27,7 +48,7 @@
 " u stands for Update source .vimrc file
 :nnoremap <leader>u :source $MYVIMRC<cr>
 
-" -- Navigation -- 
+" ---- Navigation ---- 
 " Sets esc to no-operation so you are forced to use your own mapping
 :inoremap <esc> <nop>
 
@@ -53,7 +74,7 @@
 
 
 
-" -- Working With Text --
+" ---- Working With Text ----
 " Wrap the selected word into " and '
 :nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 :nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
@@ -62,7 +83,7 @@
 :nnoremap <leader>rc :echo system('grep -v ', getreg('"', 1, 1))
 "FIXME: Find a way to pass selected text into :commands
 
-" -- Text Lookup --
+" Text Lookup
 " Create a new tab and look for selected text
 " FIXME: Does Not work the intended way, but :TABNEW | Read !grep -Hnr 'self'
 
@@ -84,6 +105,7 @@ endif
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
+Plug 'bling/vim-airline'
 
 " Initialize plugin system
 call plug#end()
