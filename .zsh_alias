@@ -8,7 +8,7 @@
 # Contents:
 # 1. Terminal Setup
 # 2. Workflow Improvements
-
+# 3. Git Specific
 
 
 # --------------------------------------
@@ -22,9 +22,13 @@ alias mkdir='mkdir -pv'                    	 # Preferred 'mkdir' implementation
 alias ll='ls -lG'		           	 # Preferred 'ls' implementation
 alias la='ls -FGlAhp'                      	 # Preferred 'ls' implementation
 alias less='less -FSRXc'                   	 # Preferred 'less' implementation
+alias numFiles='echo $(ls -1 | wc -l)'      	 # numFiles:     Count of non-hidden files in current dir
+
+# ---- Funciton Notation? ----
 cd() { builtin cd "$@"; ll; }		         # Always list directory contents upon 'cd' & save last location to prevLoc
-prev() {cd "$OLDPWD"}				 # prev:	 Navigate to the previous Dir
+prev () { cd "$OLDPWD" }			 # prev:	 Navigate to the previous Dir
 mcd () { mkdir -p "$1" && cd "$1"; }      	 # mcd:          Makes new Dir and jumps inside
+zipf () { zip -r "$1".zip "$1" ; }          	 # zipf:         To create a ZIP archive of a folder
 
 # ---- Movement Shortcuts ----
 alias cd..='cd ../'                        	 # Go back 1 directory level (for fast typers)
@@ -33,7 +37,7 @@ alias ...='cd ../../'                      	 # Go back 2 directory levels
 
 alias ~='cd ~'                             	 # ~:            Go Home
 alias wordlist='cd /usr/share/wordlists'	 # wordlist:	 Wordlists' Location
-alias scripts='cd ~/scripts'
+alias scripts='cd ~/scripts'			 # scripts:	 Scripts' Location
 
 # ---- MacOS ----
 alias f='open -a Finder ./'              	 # f:            Opens current directory in MacOS Finder
@@ -52,10 +56,17 @@ alias cic='set completion-ignore-case On' 	 # cic:          Make tab-completion 
 # --------------------------------------
 
 alias shhh='vim ~/.zsh_alias'			 # shhh:	 Open .zsh_alias file to edit
-alias src='source ~/.zshrc'
-alias vimrc='vim ~/.vimrc'			 # 		 Open .vimrc file to edit
+alias src='source ~/.zshrc'			 # src:		 Sources the .zshrc file
+alias vimrc='vim ~/.vimrc'			 # vimrc:	 Open .vimrc file to edit
 alias c='clear'                            	 # c:            Clear terminal display
 alias stdd='tee ~/Desktop/terminalOut.txt'   	 # stdd:         Pipe content to file on Desktop
 
 # lr: Full Recursive Directory Listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
+
+# --------------------------------------
+# 3. GIT SPECIFIC
+# --------------------------------------
+
+gpf() {git pull; git fetch;}			 # gpf:		Git fetch and the git pull
+gitpa () { git add *; git commit -m "$1" }	 # gitpa:	 Git Push All - adds *, commits with given message
