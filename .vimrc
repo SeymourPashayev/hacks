@@ -46,6 +46,16 @@ syntax on
 :set nocompatible
 :set noesckeys
 
+" ---- Indentation Setup ----
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+" ---- /Indentation Setup ----
+
 " Adds back arrows in insert mode
 :set t_ku=OA
 :set t_kd=OB
