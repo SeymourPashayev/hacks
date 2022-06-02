@@ -61,6 +61,7 @@ alias src='source ~/.zshrc'			 # src:		 Sources the .zshrc file
 alias vimrc='vim ~/.vimrc'			 # vimrc:	 Open .vimrc file to edit
 alias c='clear'                            	 # c:            Clear terminal display
 alias stdd='tee ~/Desktop/terminalOut.txt'   	 # stdd:         Pipe content to file on Desktop
+x () { chmod +x "$1"; }                          # x:            chmod +x on the selected file
 
 # lr: Full Recursive Directory Listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
