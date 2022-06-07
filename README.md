@@ -1,6 +1,7 @@
 # Workflow Hacks
 
-* .vimrc - latest working vimrc in use
-* .zsh_alias - latest working alias file for zsh (Don't forget to source the file from .zshrc)
+* .vimrc - VIM setup file
+* .zsh_alias - Zsh setup file (.bash_profile) 
+* .zshrc - source file (sources your .zsh_alias on terminal session startup)
 
-### Files are in early development stages, a lot of functionality is not organized within the files
+### Files are in early development stages, use at your own risk and peril
