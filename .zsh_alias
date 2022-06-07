@@ -1,74 +1,77 @@
 #########################################
-# .zsh_alias file			#
-# -- 					#
-# Seymour Pashayev			#
-# gitHub:@SeymourPashayev 		#
+# .zsh_alias file			            #
+# -- 					                #
+# Seymour Pashayev			            #
+# gitHub:@SeymourPashayev 		        #
 #########################################
 
 # Contents:
-# 1. Terminal Setup
-# 2. Workflow Improvements
-# 3. Git Specific
+# 1. Preferred Implementation
+# 2. General Workflow Improvements
+# 3. Git Workflow Improvements
 
 
 # --------------------------------------
-# 1. TERMINAL SETUP
+# 1. Preferred Implementation
 # --------------------------------------
 
-# ---- Preferred Implementation Of Built-in Functions ----
-alias cp='cp -iv'                          	 # Preferred 'cp' implementation
-alias mv='mv -iv'                          	 # Preferred 'mv' implementation
-alias mkdir='mkdir -pv'                    	 # Preferred 'mkdir' implementation
-alias ll='ls -lG'		           	 # Preferred 'ls' implementation
-alias la='ls -FGlAhp'                      	 # Preferred 'ls' implementation
-alias less='less -FSRXc'                   	 # Preferred 'less' implementation
-alias numFiles='echo $(ls -1 | wc -l)'      	 # numFiles:     Count of non-hidden files in current dir
+# ---- 1.1 Preferred Implementation Of Built-in Functions ----
+alias cp='cp -iv'                          	    # Preferred 'cp' implementation
+alias mv='mv -iv'                          	    # Preferred 'mv' implementation
+alias mkdir='mkdir -pv'                    	    # Preferred 'mkdir' implementation
+alias ll='ls -lG'		           	            # Preferred 'ls' implementation
+alias la='ls -FGlAhp'                      	    # Preferred 'ls' implementation
+alias less='less -FSRXc'                   	    # Preferred 'less' implementation
+alias numFiles='echo $(ls -1 | wc -l)'      	# numFiles:     Count of non-hidden files in current dir
 
-# ---- Funciton Notation? ----
-cd() { builtin cd "$@"; ll; }		         # Always list directory contents upon 'cd' & save last location to prevLoc
-prev () { cd "$OLDPWD" }			 # prev:	 Navigate to the previous Dir
-mcd () { mkdir -p "$1" && cd "$1"; }      	 # mcd:          Makes new Dir and jumps inside
-zipf () { zip -r "$1".zip "$1" ; }          	 # zipf:         To create a ZIP archive of a folder
+# --------------------------------------
+# 2. General Workflow Improvements
+# --------------------------------------
 
-# ---- Movement Shortcuts ----
-alias cd..='cd ../'                        	 # Go back 1 directory level (for fast typers)
-alias ..='cd ../'                          	 # Go back 1 directory level
-alias ...='cd ../../'                      	 # Go back 2 directory levels
+# ---- Terminal Setup & Additional Functionality ----
 
-alias ~='cd ~'                             	 # ~:            Go Home
-alias wordlist='cd /usr/share/wordlists'	 # wordlist:	 Wordlists' Location
-alias scripts='cd ~/scripts'			 # scripts:	 Scripts' Location
+cd() { builtin cd "$@"; ll; }		            # Always list directory contents upon 'cd' & save last location to prevLoc
+x () { chmod +x "$1"; }                         # x:            chmod +x on the selected file
+zipf () { zip -r "$1".zip "$1" ; }              # zipf:         To create a ZIP archive of a folder
+
+alias shhh='vim ~/.zsh_alias'			        # shhh:	        Open .zsh_alias file to edit
+alias vimrc='vim ~/.vimrc'			            # vimrc:	    Open .vimrc file to edit
+alias src='source ~/.zshrc'			            # src:		    Sources the .zshrc file
+
+alias stdd='tee ~/Desktop/terminalOut.txt'   	# stdd:         Pipe content to file on Desktop
+alias stda='tee -a ~/Desktop/terminalOut.txt'   # stda:         Pipe content to file on Desktop (Append Mode)
+alias c='clear'                            	    # c:            Clear terminal display
+
+# ---- Directory Specific Shortcuts ----
+alias cd..='cd ../'                        	    # cd..:         Go back 1 directory level
+alias ..='cd ../'                          	    # ..:           Go back 1 directory level
+alias ...='cd ../../'                      	    # ...:          Go back 2 directory levels
+prev () { cd "$OLDPWD" }			            # prev:	        Navigate to the previous Dir
+mcd () { mkdir -p "$1" && cd "$1"; }      	    # mcd:          Makes new Dir and jumps inside
+
+# ---- Assumption Based Location Shortcuts ----
+alias wordlist='cd /usr/share/wordlists'	    # wordlist:	    Wordlists' Location
+alias scripts='cd ~/scripts'			        # scripts:	    Scripts' Location
 
 # ---- MacOS ----
-alias f='open -a Finder ./'              	 # f:            Opens current directory in MacOS Finder
-trash () { command mv "$@" ~/.Trash ; }    	 # trash:        Moves a file to the MacOS trash
-ql () { qlmanage -p "$*" >& /dev/null; }   	 # ql:           Opens any file in MacOS Quicklook Preview
+alias f='open -a Finder ./'              	    # f:            Opens current directory in MacOS Finder
+trash () { command mv "$@" ~/.Trash ; }    	    # trash:        Moves a file to the MacOS trash
+ql () { qlmanage -p "$*" >& /dev/null; }   	    # ql:           Opens any file in MacOS Quicklook Preview
 
 #---- Linux ----
-alias show_options='shopt'                	 # Show_options: display bash options settings
-alias cic='set completion-ignore-case On' 	 # cic:          Make tab-completion case-insensitive
+alias show_options='shopt'                	    # show_options: display bash options settings
+alias cic='set completion-ignore-case On' 	    # cic:          Make tab-completion case-insensitive
 
 #---- Misc
-alias path='echo -e ${PATH//:/\\n}'        	 # path:         Echo all executable Paths
-alias fix_stty='stty sane'                	 # fix_stty:     Restore terminal settings when screwed up
-
-# --------------------------------------
-# 2. WORKFLOW IMPROVEMENTS
-# --------------------------------------
-
-alias shhh='vim ~/.zsh_alias'			 # shhh:	 Open .zsh_alias file to edit
-alias src='source ~/.zshrc'			 # src:		 Sources the .zshrc file
-alias vimrc='vim ~/.vimrc'			 # vimrc:	 Open .vimrc file to edit
-alias c='clear'                            	 # c:            Clear terminal display
-alias stdd='tee ~/Desktop/terminalOut.txt'   	 # stdd:         Pipe content to file on Desktop
-x () { chmod +x "$1"; }                          # x:            chmod +x on the selected file
+alias path='echo -e ${PATH//:/\\n}'        	    # path:         Echo all executable Paths
+alias fix_stty='stty sane'                	    # fix_stty:     Restore terminal settings when screwed up
 
 # lr: Full Recursive Directory Listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
 
 # --------------------------------------
-# 3. GIT SPECIFIC
+# 3. Git Workflow Improvements
 # --------------------------------------
 
-gpf() {git pull; git fetch;}			 # gpf:		Git fetch and the git pull
-gitpa () { git add *; git commit -m "$1" }	 # gitpa:	 Git Push All - adds *, commits with given message
+gpf() {git pull; git fetch;}			        # gpf:		    Git fetch and the git pull
+gitpa () { git add *; git commit -m "$1" }	    # gitpa:	    Git Push All - adds *, commits with given message
