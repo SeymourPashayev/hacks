@@ -3,7 +3,7 @@
 :iabbrev ssig -- <cr>Seymour Pashayev<cr>gitHub:@SeymourPashayev
 
 " ===========================
-" =	File Contents	    =
+" =		File Contents	    =
 " ===========================
 "
 " 1. Environment Setup
