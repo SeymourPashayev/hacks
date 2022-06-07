@@ -42,6 +42,8 @@ alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\
 alias cd..='cd ../'                        	        # cd..:         Go back 1 directory level
 alias ..='cd ../'                          	        # ..:           Go back 1 directory level
 alias ...='cd ../../'                      	        # ...:          Go back 2 directory levels
+alias doc='cd ~/Documents'                          # doc:          Navigates to ~/Documents
+alias desk='cd ~/Desktop'                           # desk:         Navigates to ~/Desktop
 prev () { cd "$OLDPWD" }			                # prev:	        Navigate to the previous Dir
 mcd () { mkdir -p "$1" && cd "$1"; }      	        # mcd:          Makes new Dir and jumps inside
 
@@ -75,11 +77,16 @@ alias scripts='cd ~/scripts'			            # scripts:	    Scripts' Location
 
 # ---- 3.1 Basic Shorthand Notation ----
 gpf() {git pull; git fetch;}			            # gpf:		    Git fetch and the git pull
-gitpa () { git add *; git commit -m "$1" }	        # gitpa:	    Git Push All - adds *, commits with given message
+gitpa () { git add *; git commit -m "$1";}	        # gitpa:	    Git Push All - adds *, commits with given message
 
 # --------------------------------------
 # 4. Java Workflow Improvements
 # --------------------------------------
 
-# ---- 4.1 Basic Shorthand Notation ----
+# ---- 4.1 AspectJ ajc Compiler Shorthand ----
 
+# weave: Weaves an aspectFolder into a jar/classpath. $1 - classPath, $2 - aspectFolder  
+weave() {ajc -inpath "$1":"$2" -aspectpath "$2" -d woven;}
+
+# runmain: Runs a java app provided a classpath and main. $1 - classpath, $2 - Main 
+runmain() {java -classpath "$1":$CLASSPATH "$2";}
