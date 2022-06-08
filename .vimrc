@@ -27,11 +27,22 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='powerlineish'
 " FIXME: airline_theme does not work properly
 
+" Set-up Goyo (zen mode)
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
+
+" Set-up theme gruvbox
 autocmd vimenter * ++nested colorscheme gruvbox
 set background=dark
-g:limelight_conceal_ctermfg
+
+" Set-up limelight
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+
+" Color name (:help gui-colors) or RGB color
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_guifg = '#777777'
 
 " Colorscheme
 if &t_Co ==256
