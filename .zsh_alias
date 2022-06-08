@@ -39,13 +39,14 @@ alias fix_stty='stty sane'                	        # fix_stty:     Restore termi
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
 
 # ---- 2.2  Directory Specific Shortcuts ----
-alias cd..='cd ../'                        	        # cd..:         Go back 1 directory level
-alias ..='cd ../'                          	        # ..:           Go back 1 directory level
-alias ...='cd ../../'                      	        # ...:          Go back 2 directory levels
-alias doc='cd ~/Documents'                          # doc:          Navigates to ~/Documents
-alias desk='cd ~/Desktop'                           # desk:         Navigates to ~/Desktop
+alias ~='cd ~'                                      # ~:            Navigate to ~/
+alias cd..='cd ../'                        	        # cd..:         Navigate back 1 directory level
+alias ..='cd ../'                          	        # ..:           Navigate 1 directory level
+alias ...='cd ../../'                      	        # ...:          Navigate 2 directory levels
+alias doc='cd ~/Documents'                          # doc:          Navigate to ~/Documents
+alias desk='cd ~/Desktop'                           # desk:         Navigate to ~/Desktop
 prev () { cd "$OLDPWD" }			                # prev:	        Navigate to the previous Dir
-mcd () { mkdir -p "$1" && cd "$1"; }      	        # mcd:          Makes new Dir and jumps inside
+mcd () { mkdir -p "$1" && cd "$1"; }      	        # mcd:          Makes new Dir and navigates inside
 
 # ---- 2.3 System Essentials Easy Access ----
 alias shhh='vim ~/.zsh_alias'			            # shhh:	        Open .zsh_alias file to edit
@@ -85,8 +86,17 @@ gitpa () { git add *; git commit -m "$1";}	        # gitpa:	    Git Push All - a
 
 # ---- 4.1 AspectJ ajc Compiler Shorthand ----
 
+# Compiles Java-Style aspects
+casp() {ajc -d compiledAspects "$@"}
+
 # weave: Weaves an aspectFolder into a jar/classpath. $1 - classPath, $2 - aspectFolder  
 weave() {ajc -inpath "$1":"$2" -aspectpath "$2" -d woven;}
 
 # runmain: Runs a java app provided a classpath and main. $1 - classpath, $2 - Main 
 runmain() {java -classpath "$1":$CLASSPATH "$2";}
+
+# cwr: Compile, Weave & Run ajc woven app. $1 - app.jar, $2 - Main, $3 - aspect
+cwr() {casp "$3"; weave "$1" compiledAspects; runmain woven "$2";}
+
+# ccwr: Clean cwr(). cleans up previously generated folders before running cwr. Beware of deleting important files!
+ccwr() {rm -rI compiledAspects woven; cwr "$@"}
