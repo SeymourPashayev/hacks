@@ -27,6 +27,12 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='powerlineish'
 " FIXME: airline_theme does not work properly
 
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+autocmd vimenter * ++nested colorscheme gruvbox
+set background=dark
+g:limelight_conceal_ctermfg
+
 " Colorscheme
 if &t_Co ==256
 	try
@@ -142,6 +148,9 @@ endif
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'morhetz/gruvbox'
 
 " Initialize plugin system
 call plug#end()
